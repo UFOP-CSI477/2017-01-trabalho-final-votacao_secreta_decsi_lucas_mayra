@@ -1,0 +1,75 @@
+1- Modelo
+    E-Commerce - tables
+    - Produtos      (id, nome, preço).
+    - Entradas      (produto_id, qtd)
+    - User          (id, nome, e-mail, password, type{1- adm; 2- operador; 3- cliente})
+    - Compras       (id, user_id...)
+    - Compra_Produto(id, compra_id, Prdoduto_id, qtd).
+
+2- Framework - Laravel
+
+3- Persistência - MySQL
+    DB  -> vendas
+    user-> sisvendas / 123456
+
+4-  Arquitetura - Laravel
+    Project -> laravel new nome_projeto
+
+5- Config
+    add o BD no arquivo .env
+    rodar php artisan serve (-port xxxx {Opcional})
+
+6- Routes (rotas/web.php)
+
+7- Actions
+    Telas html
+    Migrations - criar DB.
+
+    1- migration  -> php artisan help:Migration
+                  -> php artisan make:migration --create=produtos create_produtos_table
+                  AppServiceProvider add Facades.
+                  -> php artisan migrate
+    2- model      -> php artisan make:model Fornecedor
+
+    3- controller -> php artisan make:controller FornecedorController
+       CRUD -
+    4- view       -> criar a view no pasta view
+    5- routes     -> add a rota
+    6- CRUD
+       C -> create  -> XController create;
+                       views/X/create.blade.php;
+                       model: app/X
+            store   -> XController store;
+
+       R -> index   ->views/Xindex.blade.php;
+                    ->show
+       U -> update  ->Views/X/edit.blade.php
+                      XController.edit
+                      XController.update
+
+       D -> delete  -> views/X/show
+                       XController.show
+                       XController.delete
+
+    7- Altenticação de usuário
+                  -> php artisan make:auth
+                  -> herança -- usuário (autenticação) : cliente() : funcionario ();
+
+                  Update tabela- migration -> php artisan make:migration alter_users_table --table=users
+                    ->e altera oq deseja ser alterado
+                    ->php artisan migrate
+
+                  __construct para os objetos
+                  perfumaria
+
+php artisan route:list ( mostra a lista de rotas com os parametros)
+php artisan serve --porte XXXX
+tinker
+use App\Fornecedor
+$f = new Fornecedor
+$f->id = "id"
+$f->save()
+
+
+TP1- auterar o Database/migration/create user_id
+o config/Database

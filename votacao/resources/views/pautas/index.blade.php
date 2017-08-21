@@ -39,6 +39,19 @@
 
                 </a>
             @endif -->
+            <?php
+              $total = App\Resultado::where('pauta_id', $pauta->id)->count();
+              $sim = App\Resultado::where('pauta_id', $pauta->id)
+                                      ->where('voto', 1)->count();
+              $nao = App\Resultado::where('pauta_id', $pauta->id)
+                                      ->where('voto', 2)->count();
+              $abs = App\Resultado::where('pauta_id', $pauta->id)
+                                      ->where('voto', 3)->count();
+            ?>
+            Total: {{$total}} |
+            A favor: {{$sim}} |
+            Contrários: {{$nao}} |
+            Abstenções: {{$abs}} |
             <a  href="/pautas/{{ $pauta->id }}/edit">
               <i class="fa fa-pencil" style="font-size:16px"></i></a>
               <a method="post" href="/pautas/{{ $pauta->id }}">
@@ -60,57 +73,35 @@
           </div>
 
           @if (Auth::user()->type != 1)
-
-            @if (! $resultado->find(Auth::user()->id))
-              <br><br><p>Votar:</p>
-
-              <div class="container">
-                <form method="post" action="/resultados">
-                  {{ csrf_field() }}
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Pauta id</label>
-                    <div class="col-sm-2">
-                      <input type="number" readonly="readonly" name="{{ $pauta->id}}" value="{{ $pauta->id}}">
-                    </div>
-                  </div>
-                   <br><br><br>
-                  <div class="form-group">
-                    <label class="radio-inline ">
-                      <input type="radio" name="voto" value="1">A favor
-                    </label>
-                    <label class="radio-inline ">
-                      <input type="radio" name="voto" value="2">Contrario
-                    </label>
-                    <label class="radio-inline ">
-                      <input type="radio" name="voto" value="3">Abstenção
-                    </label>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-9">
-                      <textarea type="text" name="comentario" class="form-control" rows="3"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class=" col-sm-9">
-                      <div class="pull-right">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              @else
+            @if (App\Resultado::where([
+                                ['user_id','=', Auth::user()->id],
+                                ['pauta_id', '=', $pauta->id]
+                                ])->get() == false)
+              <a class="btn btn-primary btn-sm" href="/resultados/create/{{ $pauta->id }}">Votar</a>
+            @else
+            <?php $voto = App\Resultado::where('user_id', Auth::user()->id)->where('pauta_id', $pauta->id)->first();?>
               <div class="row">
-                  <div class="col-md-8 col-md-offset-2">
-                    <legend></legend>
-                    <legend>
-                      voto:            {{ $resultado->voto }}<br>
-                      comentario:          {{ $resultado->comentario }}<br>
-                    </legend>
-
+                <div class="col-md-8 col-md-offset-2">
+                  <legend></legend>
+                  <legend>
+                    voto:                  {{ $voto['voto']}}<br>
+                    comentario:            {{ $voto['comentario']}}<br>
+                  </legend>
+                </div>
               </div>
-            </div>
-              @endif
+            @endif
+        @else
+        <?php $votos = App\Resultado::where('pauta_id', $pauta->id)->get(); ?>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <legend></legend>
+            <legend>
+              @foreach ($votos as $voto)
+                comentario:            {{ $voto['comentario']}}<br>
+              @endforeach
+            </legend>
+          </div>
+        </div>
         @endif
   		</div>
     </div>

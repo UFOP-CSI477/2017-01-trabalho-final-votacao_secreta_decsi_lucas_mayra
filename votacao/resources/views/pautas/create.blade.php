@@ -2,7 +2,7 @@
 
 @section('conteudo')
 
-<a class="btn btn-primary right" href="/pautas/view/{$reuniao->id}">voltar</a>
+<a class="btn btn-primary right" href="/pautas/view/{{$reuniao->id}}">voltar</a>
 
 <div class="row">
     <div class="col-md-8 col-md-offset-2">

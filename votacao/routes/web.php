@@ -21,13 +21,11 @@ Route::resource('/salas', 'SalasController');
 Route::resource('/reuniaos', 'ReuniaosController');
 Route::resource('/participas', 'ParticipasController');
 Route::resource('/pautas', 'PautasController');
+Route::resource('/resultados', 'ResultadosController');
 
 Route::get('/pautas/index/{reuniao}', 'PautasController@index');
 Route::get('/pautas/create/{reuniao}', 'PautasController@create');
-Route::get('/resultado/create/{pauta}', 'PautasController@create');
-// Route::get('/pautas/edit/{}', 'PautasController@edit');
-// Route::get('/pautas/destroy/{reuniao}', 'PautasController@destroy');
-
+Route::get('/resultados/create/{pauta}', 'ResultadosController@create');
 
 Route::post('/pautas/status/{{ $pauta->id }}', 'PautasController@status');
 Route::group(['middleware' => 'auth'], function () {
