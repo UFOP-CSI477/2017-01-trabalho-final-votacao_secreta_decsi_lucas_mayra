@@ -6,4 +6,5 @@
       </div>
       <!-- Default to the left -->
       <strong><b>Votação DECSI </b> Desenvolvido pelos alunos: Lucas Apolinário Figueiredo &  Mayra Aparecida Mendes
-      <a href="mailto:apolinario_lucas_@hotmail.com">apolinario_lucas_@hotmail.com</a></a>
+      <a href="mailto:apolinario_lucas_@hotmail.com">apolinario_lucas_@hotmail.com</a>
+      <a href="mailto:mayramds@yahoo.com.br">mayramds@yahoo.com.br</a>

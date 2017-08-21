@@ -92,8 +92,9 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
         <div id="c">
             <div class="container">
                 <p>
-                    <b>{{env('APP_NAME')}} </b> Desenvolvido pelo aluno: Lucas Apolinário Figueiredo
+                    <b>{{env('APP_NAME')}} </b> Desenvolvido pelo aluno: Lucas Apolinário Figueiredo & Mayra Aparecida Mendes 
                     <a href="mailto:apolinario_lucas_@hotmail.com">apolinario_lucas_@hotmail.com</a>.<br/>
+                    <a href="mailto:mayramds@yahoo.com.br">mayramds@yahoo.com.br</a>
                     <strong>{{env('APP_NAME')}} &copy; 2017. CSI477-Sistemas-Web, ICEA-UFOP, João Monlevade - MG <br></strong>
                     <a href="https://github.com/llucasapolinario">Github TP1 - CSI477-Sistemas-Web </a>
                     <br/>

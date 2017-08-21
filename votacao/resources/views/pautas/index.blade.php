@@ -76,7 +76,7 @@
             @if (App\Resultado::where([
                                 ['user_id','=', Auth::user()->id],
                                 ['pauta_id', '=', $pauta->id]
-                                ])->get() == false)
+                                ])->first() == false )
               <a class="btn btn-primary btn-sm" href="/resultados/create/{{ $pauta->id }}">Votar</a>
             @else
             <?php $voto = App\Resultado::where('user_id', Auth::user()->id)->where('pauta_id', $pauta->id)->first();?>
